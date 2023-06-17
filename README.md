@@ -1,2 +1,2 @@
 # check-discord-name
-check if discord name is avaliable with specific characteres number
+check if discord username is avaliable with a specific length
