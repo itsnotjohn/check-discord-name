@@ -1,7 +1,7 @@
 (async () => {
     const token = ''; //ur token account
     const password = ''; //ur discord password
-    const length = '3'; //length for characters in ur name
+    const length = '3'; //desired number of name characters
 
     while (true) {
         const randomUsername = makeId(length);
