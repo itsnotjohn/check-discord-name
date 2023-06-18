@@ -3,9 +3,10 @@
     const password = ''; //ur discord password
     const length = '3'; //desired number of name characters
 
+    const sleep = (time) => new Promise((res) => setTimeout(res, time));
+    
     while (true) {
-        const randomUsername = makeId(length);
-      
+        const id = makeId(length);
         const response = await fetch('https://discord.com/api/v9/users/@me', {
             method: 'PATCH',
             headers: {
@@ -13,18 +14,19 @@
                 'Content-type': 'application/json'
             },
             body: JSON.stringify({
-                "username": randomUsername,
+                "username": id,
                 "password": password
             })
         });
-      
-        console.log(`Username in use: ${randomUsername}`);
 
         const resp = await response.json();
-        if (resp.captcha_key) 
-            return console.log(`\nAvaliable name: ${randomUsername}`);
+        if (resp.captcha_key)
+            return console.log(`\nNome disponível: ${id}`);
 
-        await new Promise((res) => setTimeout(res, 3500));
+        const error = resp?.errors?.username?._errors[0].code;
+        console.log(`${error}: ${id}`);
+
+        await sleep(3500);
     }
 
     //https://stackoverflow.com/a/1349426
