@@ -21,7 +21,7 @@
 
         const resp = await response.json();
         if (resp.captcha_key)
-            return console.log(`\nAvaliable name: ${id}`);
+            return console.log(`\nAvailable name: ${id}`);
 
         const error = resp?.errors?.username?._errors[0].code;
         console.log(`${error}: ${id}`);
